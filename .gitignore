@@ -1,0 +1,8 @@
+runtime/
+db/
+log/
+tmp/
+*.log
+*.iml
+.idea/
+.vscode/

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-3.xsd" >
+
+<!--create transition -->
+    <transition name="createTutorial">
+        <service-call name="tutorial.TutorialService.create#Tutorial" />
+        <default-response url="."/>
+    </transition>
+
+<!--    delete transition-->
+    <transition name="deleteTutorial">
+        <service-call name="delete#tutorial.entity.Tutorial"/>
+        <default-response url="."/>
+    </transition>
+
+
+<!--    action screen perform before rendering -->
+    <actions>
+        <entity-find entity-name="tutorial.entity.Tutorial" list="tutorialList">
+            </entity-find>
+    </actions>
+    <widgets>
+
+<!--        Create operation , using auto service -->
+        <container-dialog id="CreateTutorialDialog" button-text="Create Tutorial button" >
+            <form-single name="CreateTutorial" transition="createTutorial">
+                <auto-fields-entity entity-name="tutorial.entity.Tutorial" field-type="edit" />
+                <field name="submitButton" >
+                    <default-field title="create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+<!--        Delete operation ,using auto service generator -->
+        <container-dialog id="DeleteTutorialDialog" button-text="Delete Tutorial" >
+            <form-single name="DeleteTutorial" transition="deleteTutorial">
+                <auto-fields-entity entity-name="tutorial.entity.Tutorial" field-type="edit" include="pk"/>
+                <field name="submitButton" >
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+
+        <form-list name="ListTutorials" list="tutorialList" header-dialog="true" skip-form="true">
+            <auto-fields-entity entity-name="tutorial.entity.Tutorial" field-type="find-display"/>
+            <field name="description">
+                <header-field show-order-by="true"><text-find hide-options="true"/></header-field>
+                <default-field><display/></default-field>
+            </field>
+        </form-list>
+    </widgets>
+</screen>

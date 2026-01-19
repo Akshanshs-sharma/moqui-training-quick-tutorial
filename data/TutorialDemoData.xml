@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<entity-facade-xml type="demo">
+
+    <tutorial.entity.Tutorial tutorialId="1" description="Demo data 1" />
+    <tutorial.entity.Tutorial tutorialId="2" description="Demo data 2" />
+</entity-facade-xml>
